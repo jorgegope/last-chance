@@ -1,7 +1,11 @@
 .last-chance {
-    &__title {
+    &__title,
+    &__question-display {
         display: flex;
         justify-content: center;
         width: 100%;
+    }
+    &__title {
+        margin-bottom: 50px;
     }
 }
