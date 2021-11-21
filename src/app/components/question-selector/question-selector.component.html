@@ -1,0 +1,8 @@
+<div class="question-selector">
+    <lc-question-display
+        *ngFor="let question of questions.slice(0, currentQuestionIndex)"
+        [type]="question.type"
+        [text]="question.text"
+        (sendAnswer)="onSendAnswer($event, questions.indexOf(question))"
+    ></lc-question-display>
+</div>

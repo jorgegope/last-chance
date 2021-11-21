@@ -1,6 +1,8 @@
-<div class="question-display">
-    <div>
-        <span class="question-display__line">Title</span>
-        <span class="question-display__line">Question here!</span>
-    </div>
+<div [ngSwitch]="type" class="question-display">
+    <lc-question-input
+        *ngSwitchCase="questionType.Input"
+        [text]="text"
+        (sendAnswer)="onSendAnswer($event)"
+    ></lc-question-input>
+    <div *ngSwitchDefault>No question selected</div>
 </div>
