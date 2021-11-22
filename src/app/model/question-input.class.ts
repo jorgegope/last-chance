@@ -3,7 +3,7 @@ import { Question } from './question.class';
 
 export class QuestionInput extends Question {
     constructor(text: string, correctAnswer: number) {
-        super(QuestionType.Calculation, text, correctAnswer);
+        super(QuestionType.Input, text, correctAnswer);
         this.text = text;
         this.correctAnswer = correctAnswer;
     }

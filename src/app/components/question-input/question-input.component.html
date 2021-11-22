@@ -1,15 +1,26 @@
 <div class="question-input">
     <div class="question-input__container">
-        <span class="question-input__text">{{ text }}</span>
+        <span class="question-input__text">{{ question.text }}</span>
     </div>
     <div class="question-input__container">
-        <input
-            class="question-input__input"
-            type="text"
-            placeholder="Answer"
-            (ngModel)="(answer)"
-            (keyup.enter)="onSendAnswer()"
-        />
+        <ng-container *ngIf="isNumber(); else isString">
+            <input
+                class="question-input__input"
+                type="number"
+                placeholder="Answer"
+                (keyup.enter)="onSendAnswer()"
+                [(ngModel)]="answer"
+            />
+        </ng-container>
+        <ng-template #isString>
+            <input
+                class="question-input__input"
+                type="text"
+                placeholder="Answer"
+                [(ngModel)]="answer"
+                (keyup.enter)="onSendAnswer()"
+            />
+        </ng-template>
     </div>
     <button class="question-input__button" (click)="onSendAnswer()">
         Send answer

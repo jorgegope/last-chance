@@ -1,7 +1,7 @@
-<div [ngSwitch]="type" class="question-display">
+<div [ngSwitch]="question.type" class="question-display">
     <lc-question-input
         *ngSwitchCase="questionType.Input"
-        [text]="text"
+        [question]="question"
         (sendAnswer)="onSendAnswer($event)"
     ></lc-question-input>
     <div *ngSwitchDefault>No question selected</div>

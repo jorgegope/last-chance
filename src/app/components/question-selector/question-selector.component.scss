@@ -1,1 +1,8 @@
-
+.question-selector {
+    &__info,
+    &__correct-answer {
+        display: flex;
+        padding: 20px 0;
+        justify-content: space-around;
+    }
+}

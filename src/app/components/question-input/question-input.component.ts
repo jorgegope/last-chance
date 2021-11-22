@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { QuestionInput } from 'src/app/model/question-input.class';
 
 @Component({
     selector: 'lc-question-input',
@@ -6,14 +7,21 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
     styleUrls: ['./question-input.component.scss'],
 })
 export class QuestionInputComponent {
-    @Input() text = '';
+    @Input() question: QuestionInput;
 
-    @Output() sendAnswer = new EventEmitter<string>();
+    @Output() sendAnswer = new EventEmitter<string | number | undefined>();
 
-    answer = '';
+    answer: string | number | undefined;
 
     onSendAnswer() {
         console.log(this.answer);
-        this.sendAnswer.next(this.answer);
+        if (this.answer) {
+            this.sendAnswer.next(this.answer);
+            this.answer = undefined;
+        }
+    }
+
+    isNumber(): boolean {
+        return typeof this.question.correctAnswer === 'number';
     }
 }

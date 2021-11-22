@@ -1,8 +1,27 @@
 <div class="question-selector">
+    <div class="question-selector__info">
+        <span>Questions answered: {{ questionsAnswered }}</span>
+        <span>Correct answers: {{ numberOfCorrectAnswers }}</span>
+    </div>
     <lc-question-display
-        *ngFor="let question of questions.slice(0, currentQuestionIndex)"
-        [type]="question.type"
-        [text]="question.text"
-        (sendAnswer)="onSendAnswer($event, questions.indexOf(question))"
+        [question]="questions[currentQuestionIndex]"
+        (sendAnswer)="
+            onSendAnswer(
+                $event,
+                questions.indexOf(questions[currentQuestionIndex])
+            )
+        "
     ></lc-question-display>
+    <ng-container
+        *ngIf="
+            questions[currentQuestionIndex].answer &&
+            questions[currentQuestionIndex].answer !==
+                questions[currentQuestionIndex].correctAnswer
+        "
+    >
+        <span class="question-selector__correct-answer"
+            >The correct answer is:
+            {{ questions[currentQuestionIndex].correctAnswer }}</span
+        >
+    </ng-container>
 </div>

@@ -16,14 +16,22 @@ export class QuestionSelectorComponent {
         },
         {
             type: QuestionType.Input,
-            text: 'Do you like aliens?',
+            text: 'Do you like machines?',
             correctAnswer: 'Yes',
         },
     ];
 
-    currentQuestionIndex = 1;
+    currentQuestionIndex = 0;
+    numberOfCorrectAnswers = 0;
+    questionsAnswered = 0;
 
-    onSendAnswer(answer: string, answerIndex: number) {
+    onSendAnswer(answer: string | number | undefined, answerIndex: number) {
+        debugger;
         this.currentQuestionIndex++;
+        this.questionsAnswered++;
+        this.questions[answerIndex].answer = answer;
+        if (this.questions[answerIndex].correctAnswer === answer) {
+            this.numberOfCorrectAnswers++;
+        }
     }
 }

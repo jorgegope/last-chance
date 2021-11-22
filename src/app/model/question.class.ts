@@ -4,6 +4,7 @@ export class Question {
     type: QuestionType;
     text: string;
     correctAnswer: string | number;
+    answer?: string | number | undefined;
 
     constructor(
         type: QuestionType,
