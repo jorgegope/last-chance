@@ -1,0 +1,23 @@
+<div class="question-multi-choices">
+    <div class="question-multi-choices__container">
+        <span class="question-multi-choices__text">{{ question.text }}</span>
+    </div>
+    <div class="question-multi-choices__input-container">
+        <div *ngFor="let choice of questionMultiChoice?.choices; let i = index">
+            <div class="question-multi-choices__choice">
+                <input
+                    class="question-multi-choices__choice-input"
+                    type="radio"
+                    [value]="i"
+                    name="choices"
+                    ng-control="choices"
+                    [(ngModel)]="answer"
+                />
+                <label class="question-multi-choices__choice-label">
+                    {{ choice }}
+                </label>
+            </div>
+        </div>
+    </div>
+    <button class="question-multi-choices__button" (click)="onSendAnswer()">Send answer</button>
+</div>

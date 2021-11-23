@@ -14,7 +14,6 @@ export class QuestionInputComponent {
     answer: string | number | undefined;
 
     onSendAnswer() {
-        console.log(this.answer);
         if (this.answer) {
             this.sendAnswer.next(this.answer);
             this.answer = undefined;

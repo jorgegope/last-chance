@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { QuestionInput } from 'src/app/model/question-input.class';
+import { QuestionMultiChoices } from 'src/app/model/question-multi-choices.class';
 import { QuestionType } from 'src/app/model/question-type.enum';
 import { Question } from 'src/app/model/question.class';
 
@@ -7,26 +9,24 @@ import { Question } from 'src/app/model/question.class';
     templateUrl: './question-selector.component.html',
     styleUrls: ['./question-selector.component.scss'],
 })
-export class QuestionSelectorComponent {
+export class QuestionSelectorComponent implements OnInit {
     questions: Question[] = [
-        {
-            type: QuestionType.Input,
-            text: 'What is the current year?',
-            correctAnswer: 2021,
-        },
-        {
-            type: QuestionType.Input,
-            text: 'Do you like machines?',
-            correctAnswer: 'Yes',
-        },
+        new QuestionMultiChoices('12 / 4 =', ['4', '3', '5'], 1),
+        new QuestionInput('What is the current year?', 2021),
+        new QuestionInput('Do you like machines?', 'Yes'),
+        new QuestionInput(
+            'What is the surname of the leading creator of relativity theory called Albert?',
+            'Einstein',
+        ),
     ];
 
     currentQuestionIndex = 0;
     numberOfCorrectAnswers = 0;
     questionsAnswered = 0;
 
+    ngOnInit(): void {}
+
     onSendAnswer(answer: string | number | undefined, answerIndex: number) {
-        debugger;
         this.currentQuestionIndex++;
         this.questionsAnswered++;
         this.questions[answerIndex].answer = answer;

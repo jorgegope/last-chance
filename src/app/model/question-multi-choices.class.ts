@@ -5,9 +5,10 @@ export class QuestionMultiChoices extends Question {
 
     choices: string[] = [];
 
-    constructor(text: string, correctAnswer: number) {
+    constructor(text: string, choices: string[], correctAnswer: number) {
         super(QuestionType.MultiChoices, text, correctAnswer);
         this.text = text;
+        this.choices = choices;
         this.correctAnswer = correctAnswer;
     }
 }

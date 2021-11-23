@@ -1,6 +1,8 @@
+import { QuestionInput } from './question-input.class';
+import { QuestionMultiChoices } from './question-multi-choices.class';
 import { QuestionType } from './question-type.enum';
 
-export class Question {
+export abstract class Question {
     type: QuestionType;
     text: string;
     correctAnswer: string | number;
@@ -14,5 +16,13 @@ export class Question {
         this.type = type;
         this.text = text;
         this.correctAnswer = correctAnswer;
+    }
+
+    isQuestionInput(): this is QuestionInput {
+        return this.type === QuestionType.Input;
+    }
+
+    isQuestionMultiChoices(): this is QuestionMultiChoices {
+        return this.type === QuestionType.MultiChoices;
     }
 }

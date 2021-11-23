@@ -4,5 +4,10 @@
         [question]="question"
         (sendAnswer)="onSendAnswer($event)"
     ></lc-question-input>
+    <lc-question-multi-choices
+        *ngSwitchCase="questionType.MultiChoices"
+        [question]="question"
+        (sendAnswer)="onSendAnswer($event)"
+    ></lc-question-multi-choices>
     <div *ngSwitchDefault>No question selected</div>
 </div>
