@@ -5,14 +5,14 @@ import { Question } from 'src/app/model/question.class';
 @Component({
     selector: 'lc-question-multi-choices',
     templateUrl: './question-multi-choices.component.html',
-    styleUrls: ['./question-multi-choices.component.scss'],
+    styleUrls: ['./question-multi-choices.component.scss']
 })
 export class QuestionMultiChoicesComponent implements OnInit {
     @Input() question: Question;
 
-    @Output() sendAnswer = new EventEmitter<number | undefined>();
+    @Output() sendAnswer = new EventEmitter<string | undefined>();
 
-    answer: number | undefined;
+    answer: string | undefined;
 
     questionMultiChoice: QuestionMultiChoices;
 
@@ -23,7 +23,6 @@ export class QuestionMultiChoicesComponent implements OnInit {
     }
 
     onSendAnswer() {
-        debugger;
         if (this.answer) {
             this.sendAnswer.next(this.answer);
             this.answer = undefined;

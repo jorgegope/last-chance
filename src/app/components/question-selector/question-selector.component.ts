@@ -7,17 +7,14 @@ import { Question } from 'src/app/model/question.class';
 @Component({
     selector: 'lc-question-selector',
     templateUrl: './question-selector.component.html',
-    styleUrls: ['./question-selector.component.scss'],
+    styleUrls: ['./question-selector.component.scss']
 })
 export class QuestionSelectorComponent implements OnInit {
     questions: Question[] = [
-        new QuestionMultiChoices('12 / 4 =', ['4', '3', '5'], 1),
+        new QuestionMultiChoices('12 / 4 =', ['4', '3', '5'], '3'),
         new QuestionInput('What is the current year?', 2021),
         new QuestionInput('Do you like machines?', 'Yes'),
-        new QuestionInput(
-            'What is the surname of the leading creator of relativity theory called Albert?',
-            'Einstein',
-        ),
+        new QuestionInput('What is the surname of the leading creator of relativity theory called Albert?', 'Einstein')
     ];
 
     currentQuestionIndex = 0;
@@ -30,7 +27,11 @@ export class QuestionSelectorComponent implements OnInit {
         this.currentQuestionIndex++;
         this.questionsAnswered++;
         this.questions[answerIndex].answer = answer;
-        if (this.questions[answerIndex].correctAnswer === answer) {
+        if (
+            this.questions[answerIndex].isQuestionInput()
+                ? this.questions[answerIndex].correctAnswer === answer
+                : this.questions[answerIndex].correctAnswer === answer
+        ) {
             this.numberOfCorrectAnswers++;
         }
     }

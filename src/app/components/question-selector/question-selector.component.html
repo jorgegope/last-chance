@@ -3,25 +3,26 @@
         <span>Questions answered: {{ questionsAnswered }}</span>
         <span>Correct answers: {{ numberOfCorrectAnswers }}</span>
     </div>
-    <lc-question-display
-        [question]="questions[currentQuestionIndex]"
-        (sendAnswer)="
-            onSendAnswer(
-                $event,
-                questions.indexOf(questions[currentQuestionIndex])
-            )
-        "
-    ></lc-question-display>
+    <ng-container *ngIf="currentQuestionIndex < questions.length; else worthiness">
+        <lc-question-display
+            [question]="questions[currentQuestionIndex]"
+            (sendAnswer)="onSendAnswer($event, questions.indexOf(questions[currentQuestionIndex]))"
+        ></lc-question-display>
+    </ng-container>
+    <ng-template #worthiness>
+        <div class="question-selector__info">
+            <span>The value of your worthiness is: {{ (numberOfCorrectAnswers / questionsAnswered) * 10 | number: '1.2-2' }}</span>
+        </div>
+    </ng-template>
     <ng-container
         *ngIf="
-            questions[currentQuestionIndex].answer &&
-            questions[currentQuestionIndex].answer !==
-                questions[currentQuestionIndex].correctAnswer
+            currentQuestionIndex > 0 &&
+            questions[currentQuestionIndex - 1].answer &&
+            questions[currentQuestionIndex - 1].answer !== questions[currentQuestionIndex - 1].correctAnswer
         "
     >
         <span class="question-selector__correct-answer"
-            >The correct answer is:
-            {{ questions[currentQuestionIndex].correctAnswer }}</span
+            >Wrong answer, the correct one was: {{ questions[currentQuestionIndex - 1].correctAnswer }}</span
         >
     </ng-container>
 </div>

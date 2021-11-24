@@ -6,6 +6,7 @@
         <ng-container *ngIf="isNumber(); else isString">
             <input
                 class="question-input__input"
+                autofocus
                 type="number"
                 placeholder="Answer"
                 (keyup.enter)="onSendAnswer()"
@@ -15,6 +16,7 @@
         <ng-template #isString>
             <input
                 class="question-input__input"
+                autofocus
                 type="text"
                 placeholder="Answer"
                 [(ngModel)]="answer"
@@ -22,7 +24,5 @@
             />
         </ng-template>
     </div>
-    <button class="question-input__button" (click)="onSendAnswer()">
-        Send answer
-    </button>
+    <button class="question-input__button" (click)="onSendAnswer()">Send answer</button>
 </div>
